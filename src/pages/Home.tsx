@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { NavLink } from "react-router";
-import { ROUTER_LINKS, type TRouterLinksName } from "@/types/routers.type";
+import { ROUTER_LINKS } from "@/types/routers.type";
 import { TitlePage } from "@/components/ui/TitlePage";
 import { Card } from "@/components/common/Card";
 import { Button } from "@/components/ui/Button";
@@ -13,15 +13,15 @@ export const Home: FC = () => {
     <>
       <TitlePage>Home</TitlePage>
       <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-center mb-6">
-        {Object.keys(ROUTER_LINKS)
-          .filter((el) => el !== "Home")
-          .map((el) => (
+        {Object.entries(ROUTER_LINKS)
+          .filter(([key]) => key !== "Home")
+          .map(([key, value]) => (
             <Card
-              title={el}
-              key={el}
-              description={`Example of a table for ${el.toLowerCase()} data`}
+              title={key}
+              key={key}
+              description={`Example of a table for ${value.toLowerCase()} data`}
             >
-              <NavLink to={ROUTER_LINKS[el as TRouterLinksName]}>
+              <NavLink to={value}>
                 <Button>Go to</Button>
               </NavLink>
             </Card>
